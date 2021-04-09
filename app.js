@@ -32,7 +32,7 @@ app.get("/getPrice/:symbol", (req, res)=>{
 });
 
 app.listen(process.env.PORT||"3001", ()=>{
-    console.log("Server started on localhost 3001");
+    console.log("Server started on localhost 3001.");
 });
 
 
