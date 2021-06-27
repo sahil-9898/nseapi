@@ -6,7 +6,7 @@ var nse = api.NSE;
 
 app.get("/", (req, res) => {
   res.send(
-    "Daddy Sahil ne api banayi hai , go to https://nseapi.herokuapp.com/symbol_name to get stock price"
+    "https://nseapi.herokuapp.com/symbol_name to get stock price"
   );
 });
 app.get("/:symbol", (req, res) => {
