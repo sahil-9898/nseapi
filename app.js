@@ -1,33 +1,18 @@
 const express = require("express");
-const api = require("indian-stock-exchange");
 const app = express();
-var bse = api.BSE;
-var nse = api.NSE;
+const request = require("request");
 
 app.get("/", (req, res) => {
-  res.send(
-    "https://nseapi.herokuapp.com/symbol_name to get stock price"
-  );
+  res.send("https://nseapi.herokuapp.com/symbol_name to get stock price");
 });
 app.get("/:symbol", (req, res) => {
-  nse.getQuoteInfo(req.params.symbol).then(function (price) {
-    const x = price.data.data[0];
-    if (x.buyPrice1 === "-") {
-      res.send(x.lastPrice);
-    } else {
-      res.send(x.buyPrice1);
-    }
-  });
-});
-
-app.get("/getPrice/:symbol", (req, res) => {
-  nse.getQuoteInfo(req.params.symbol).then(function (price) {
-    const x = price.data.data[0];
-    if (x.buyPrice1 === "-") {
-      res.send(x.lastPrice);
-    } else {
-      res.send(x.buyPrice1);
-    }
+  const url =
+    "https://query1.finance.yahoo.com/v8/finance/chart/" +
+    req.params.symbol +
+    ".NS?region=IN&lang=en-IN&includePrePost=false&interval=2m&useYfid=true&range=1d&corsDomain=in.finance.yahoo.com&.tsrc=finance";
+  request(url, function (error, response, body) {
+    const data = JSON.parse(body);
+    res.send(data.chart.result[0].meta);
   });
 });
 
