@@ -12,7 +12,7 @@ app.get("/:symbol", (req, res) => {
     ".NS?region=IN&lang=en-IN&includePrePost=false&interval=2m&useYfid=true&range=1d&corsDomain=in.finance.yahoo.com&.tsrc=finance";
   request(url, function (error, response, body) {
     const data = JSON.parse(body);
-    res.send(data.chart.result[0].meta);
+    res.send(data);
   });
 });
 
