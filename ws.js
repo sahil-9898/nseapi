@@ -14,7 +14,7 @@ client.on("connect", function (connection) {
   connection.on("close", (connection) => {
     console.log("connection closed");
   });
-  connection.send('{"subscribe":["IRCTC.NS"]}');
+  connection.send('{"subscribe":["IRCTC.NS", "SBIN.NS"]}');
 
   connection.on("message", function (message) {
     console.log(message);
